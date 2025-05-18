@@ -1,1 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 @import "tailwindcss";
+
+body {
+  font-family: "Roboto Slab", "sans-serif";
+  font-weight: 400;
+  color: antiquewhite;
+  background-image: url("/bg-default.jpg");
+  background-color: black;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*backdrop-filter: blur(1px);*/
+}
+
+textarea {
+  height: auto;
+  min-height: 2.5rem;
+  max-height: 12rem;
+}
