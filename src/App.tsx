@@ -8,13 +8,11 @@ const App = () => {
       {/* HEADER */}
       <Header />
 
-      <div className="md:px-16 px-8">
-        {/* BODY */}
-        <Body />
+      {/* BODY */}
+      <Body />
 
-        {/* CHAT INPUT */}
-        <ChatInput />
-      </div>
+      {/* CHAT INPUT */}
+      <ChatInput />
     </main>
   );
 };

@@ -58,45 +58,53 @@ const ChatInput = () => {
   };
 
   return (
-    <section className="w-full flex gap-1 items-center justify-center backdrop-blur-xl px-4 py-2 rounded-full bg-gray-900">
-      <textarea
-        className="field-sizing-content w-full outline-hidden border-1 rounded-sm"
-        ref={textareaRef}
-        value={textareaState}
-        onChange={(event) => setTextareaState(event.target.value)}
-      />
+    <section className="fixed bottom-4 left-0 right-0 px-4">
+      <div className="w-full flex gap-2 items-center justify-center backdrop-blur-xl rounded-full bg-gray-900">
+        <textarea
+          className="field-sizing-content w-full outline-hidden border-1 rounded-sm resize-none overflow-hidden hover:border-blue-500 focus:border-blue-400 transition-all"
+          ref={textareaRef}
+          value={textareaState}
+          onChange={(event) => {
+            setTextareaState(event.target.value);
+            //   Auto adjust height
+            event.target.style.height = "auto";
+            event.target.style.height = `${event.target.scrollHeight}px`;
+          }}
+          rows={1}
+        />
 
-      {!browserSupportsSpeechRecognition && (
-        <div className="p-2 border-1 border-dashed border-red-500 cursor-not-allowed">
-          <IconContext.Provider value={{ color: "red" }}>
-            <FaMicrophoneSlash size={20} />
-          </IconContext.Provider>
-        </div>
-      )}
+        {!browserSupportsSpeechRecognition && (
+          <div className="p-2 border-1 border-dashed border-red-500 cursor-not-allowed">
+            <IconContext.Provider value={{ color: "red" }}>
+              <FaMicrophoneSlash size={20} />
+            </IconContext.Provider>
+          </div>
+        )}
 
-      {!isMicrophoneAvailable && (
-        <div className="p-2 border-1 border-yellow-500 cursor-not-allowed">
-          <IconContext.Provider value={{ color: "yellow" }}>
-            <FaMicrophoneSlash size={20} />
-          </IconContext.Provider>
-        </div>
-      )}
+        {!isMicrophoneAvailable && (
+          <div className="p-2 border-1 border-yellow-500 cursor-not-allowed">
+            <IconContext.Provider value={{ color: "yellow" }}>
+              <FaMicrophoneSlash size={20} />
+            </IconContext.Provider>
+          </div>
+        )}
 
-      {browserSupportsSpeechRecognition && isMicrophoneAvailable && (
-        <button onClick={handleSpeechRecognition}>
-          {listening ? (
-            <div className="p-2 border-1  cursor-pointer rounded-full bg-gray-800 transition-all">
-              <IconContext.Provider value={{ color: "red" }}>
-                <FaMicrophoneSlash size={20} />
-              </IconContext.Provider>
-            </div>
-          ) : (
-            <div className="p-2 border-1 border-green-500 cursor-pointer rounded-full">
-              <FaMicrophone size={20} />
-            </div>
-          )}
-        </button>
-      )}
+        {browserSupportsSpeechRecognition && isMicrophoneAvailable && (
+          <button onClick={handleSpeechRecognition}>
+            {listening ? (
+              <div className="p-2 border-1  cursor-pointer rounded-full bg-gray-800 transition-all">
+                <IconContext.Provider value={{ color: "red" }}>
+                  <FaMicrophoneSlash size={20} />
+                </IconContext.Provider>
+              </div>
+            ) : (
+              <div className="p-2 border-1 border-green-500 cursor-pointer hover:border-blue-500 rounded-full">
+                <FaMicrophone size={20} />
+              </div>
+            )}
+          </button>
+        )}
+      </div>
     </section>
   );
 };
