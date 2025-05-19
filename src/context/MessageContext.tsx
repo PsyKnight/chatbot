@@ -7,10 +7,10 @@ import {
   useState,
 } from "react";
 
-interface MessageType {
+export interface MessageType {
   role: "user" | "chatbot";
   text: string;
-  image?: string;
+  image?: string | null;
 }
 
 interface MessageContextType {

@@ -16,7 +16,7 @@ body {
 textarea {
   height: auto;
   min-height: 2.5rem;
-  max-height: 12rem;
+  max-height: 6rem;
   bottom: 0;
   box-sizing: border-box;
   display: block;
