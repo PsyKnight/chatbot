@@ -30,10 +30,10 @@ export const MessageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useMessageContext = () => {
+export const useMessage = () => {
   const context = useContext(MessageContext);
   if (!context) {
-    throw new Error("useMessageContext must be used inside MessageProvider");
+    throw new Error("useMessage must be used inside MessageProvider");
   }
 
   return context;

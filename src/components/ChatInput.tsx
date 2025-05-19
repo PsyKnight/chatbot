@@ -4,14 +4,18 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { FaImage, FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { useMessageContext } from "../context/MessageContext.tsx";
+import { type MessageType, useMessage } from "../context/MessageContext.tsx";
 import * as React from "react";
+import { getReply } from "../utils/gemini.ts";
+
 const ChatInput = () => {
   const [textareaState, setTextareaState] = useState<string>("");
   const [imagePreview, setImagePreview] = useState<string | null>();
+  const [loading, setLoading] = useState<boolean>(false);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const { setMessages } = useMessageContext();
+  const { setMessages } = useMessage();
 
   const {
     transcript,
@@ -62,17 +66,29 @@ const ChatInput = () => {
     }
   };
 
-  const handleSend = () => {
-    setMessages((prevState) => [
-      ...prevState,
-      {
+  const handleSend = async () => {
+    setLoading(true);
+    try {
+      const image = imagePreview?.split(",")[1];
+      const userMessage: MessageType = {
         role: "user",
         text: textareaState.trim(),
-        image: imagePreview || undefined,
-      },
-    ]);
-    setImagePreview(null);
-    setTextareaState("");
+        image: image,
+      };
+
+      setMessages((prevState) => [...prevState, userMessage]);
+      const botReply = await getReply(userMessage);
+      setMessages((prevState) => [
+        ...prevState,
+        { role: "chatbot", text: botReply },
+      ]);
+      setImagePreview(null);
+      setTextareaState("");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,20 +163,25 @@ const ChatInput = () => {
           </button>
         )}
 
-        <button className="px-4 py-2 bg-gray-800 rounded-full cursor-pointer hover:bg-gray-800/80 active:bg-gray-800 transition-all">
+        <div className="px-4 py-2 bg-gray-800 rounded-full cursor-pointer hover:bg-gray-800/80 active:bg-gray-800 transition-all relative">
           <FaImage size={20} />
           <input
             type="file"
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50"
             onChange={handleFileChange}
           />
-        </button>
+        </div>
 
         <button
-          className="px-4 py-2 bg-blue-500 rounded-tr-md rounded-tl-full rounded-b-full cursor-pointer hover:border-green-200 border-1 border-blue-500 hover:text-green-200 transition-all"
+          className={`px-4 py-2 ${loading ? "cursor-not-allowed" : "bg-blue-500  cursor-pointer"} border-blue-500 rounded-tr-md rounded-tl-full rounded-b-full hover:border-green-200 border-1  hover:text-green-200 transition-all`}
+          disabled={loading}
           onClick={handleSend}
         >
-          Send
+          {loading ? (
+            <img src="/loader.svg" alt="Loading..." className="w-6 right-12" />
+          ) : (
+            <p>Send</p>
+          )}
         </button>
       </div>
     </section>
