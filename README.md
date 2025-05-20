@@ -1,54 +1,70 @@
-# React + TypeScript + Vite
+# ChatBot Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a React-based chatbot application that leverages the Gemini API for generating conversational responses and the Hugging Face API for generating images based on user input. It features a clean and responsive user interface with speech recognition capabilities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-   **Real-time Chat:** Engage in dynamic conversations with the chatbot.
+-   **Gemini API Integration:** Utilizes the Gemini API to generate intelligent and context-aware responses.
+-   **Hugging Face API Integration:** Generates images from text prompts using the Hugging Face API.
+-   **Speech Recognition:** Supports voice input using the `react-speech-recognition` library.
+-   **Image Upload:** Allows users to upload images as part of their messages.
+-   **Markdown Support:** Renders chatbot responses in Markdown format using `react-markdown`.
+-   **Responsive Design:** Provides a seamless user experience across various devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+-   React
+-   TypeScript
+-   Tailwind CSS
+-   react-speech-recognition
+-   react-icons
+-   react-markdown
+-   remark-gfm
+-   @google/generative-ai
+-   @huggingface/inference
+-   dotenv
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+-   Node.js (>=18)
+-   npm (>=8)
+-   WebStorm or any other IDE
+
+### Installation
+
+1.  Clone the repository:
+
+    ```bash
+    git clone <repository-url>
+    ```
+
+2.  Navigate to the project directory:
+
+    ```bash
+    cd <project-directory>
+    ```
+
+3.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4.  Create a `.env` file in the root directory and add your API keys:
+
+    ```dotenv
+    VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+    VITE_HUGGINGFACE_API_KEY=YOUR_HUGGINGFACE_API_KEY
+    ```
+
+    Replace `YOUR_GEMINI_API_KEY` and `YOUR_HUGGINGFACE_API_KEY` with your actual API keys.
+
+### Running the Application
+
+```bash
+npm run dev
