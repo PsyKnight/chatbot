@@ -17,3 +17,19 @@ export const generateImage = async (text: string) => {
     throw new Error("Failed to fetch data from huggingface");
   }
 };
+
+export const generateAudio = async (text: string) => {
+  try {
+    const audio = await client.textToSpeech({
+      provider: "fal-ai",
+      model: "hexgrad/Kokoro-82M",
+      inputs: text,
+    });
+    if (!audio) throw new Error("No response from huggingface");
+
+    return audio;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch data from huggingface");
+  }
+};

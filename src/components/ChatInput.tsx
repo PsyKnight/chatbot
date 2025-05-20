@@ -79,12 +79,12 @@ const ChatInput = () => {
         ...prevState,
         { role: "chatbot", text: botReply },
       ]);
-      setImagePreview(null);
-      setTextareaState("");
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setImagePreview(null);
+      setTextareaState("");
     }
   };
 
