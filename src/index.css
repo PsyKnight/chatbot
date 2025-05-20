@@ -21,3 +21,18 @@ textarea {
   box-sizing: border-box;
   display: block;
 }
+
+.markdown-body {
+  max-width: 50vw;
+}
+
+.markdown-body p {
+  margin-bottom: 1em; /* Add spacing between paragraphs */
+  display: block; /* Ensure paragraphs are block-level elements */
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  display: block; /* Ensure lists are block-level elements */
+  margin-left: 20px; /* Add indentation for lists */
+}

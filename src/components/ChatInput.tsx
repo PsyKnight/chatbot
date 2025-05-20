@@ -26,9 +26,7 @@ const ChatInput = () => {
 
   useEffect(() => {
     setTextareaState((prevState) => prevState + transcript);
-  }, [listening]);
 
-  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
         event.code === "Space" &&
@@ -69,11 +67,10 @@ const ChatInput = () => {
   const handleSend = async () => {
     setLoading(true);
     try {
-      const image = imagePreview?.split(",")[1];
       const userMessage: MessageType = {
         role: "user",
         text: textareaState.trim(),
-        image: image,
+        image: imagePreview,
       };
 
       setMessages((prevState) => [...prevState, userMessage]);
@@ -173,7 +170,7 @@ const ChatInput = () => {
         </div>
 
         <button
-          className={`px-4 py-2 ${loading ? "cursor-not-allowed" : "bg-blue-500  cursor-pointer"} border-blue-500 rounded-tr-md rounded-tl-full rounded-b-full hover:border-green-200 border-1  hover:text-green-200 transition-all`}
+          className={`px-4 py-2 ${loading ? "cursor-not-allowed" : "bg-blue-500  cursor-pointer"} border-blue-500 rounded-2xl rounded-tr-sm hover:border-green-200 border-1  hover:text-green-200 transition-all`}
           disabled={loading}
           onClick={handleSend}
         >

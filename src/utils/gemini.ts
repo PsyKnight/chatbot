@@ -19,7 +19,7 @@ export const getReply = async (message: MessageType) => {
         ? "image/png"
         : "image/jpeg";
 
-      parts.push({ inlineData: { mimeType, data: image } });
+      parts.push({ inlineData: { mimeType, data: image.split(",")[1] } });
     }
 
     const response = await model.generateContent({
