@@ -40,13 +40,13 @@ This project is a React-based chatbot application that leverages the Gemini API 
 1.  Clone the repository:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/PsyKnight/chatbot
     ```
 
 2.  Navigate to the project directory:
 
     ```bash
-    cd <project-directory>
+    cd chatbot
     ```
 
 3.  Install dependencies:
