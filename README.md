@@ -2,14 +2,16 @@
 
 ## Overview
 
-This project is a React-based chatbot application that leverages the Gemini API for generating conversational responses and the Hugging Face API for generating images based on user input. It features a clean and responsive user interface with speech recognition capabilities.
+This project is a React-based chatbot application that leverages the Gemini API for generating conversational responses and the Hugging Face API for generating images and audio based on user input. It features a clean and responsive user interface with speech recognition capabilities.
 
 ## Features
 
 -   **Real-time Chat:** Engage in dynamic conversations with the chatbot.
 -   **Gemini API Integration:** Utilizes the Gemini API to generate intelligent and context-aware responses.
--   **Hugging Face API Integration:** Generates images from text prompts using the Hugging Face API.
--   **Speech Recognition:** Supports voice input using the `react-speech-recognition` library.
+-   **Hugging Face API Integration:**
+    - Generates images from text prompts
+    - Converts text to speech for audio playback
+-   **Speech Recognition:** Supports voice input using `react-speech-recognition` library.
 -   **Image Upload:** Allows users to upload images as part of their messages.
 -   **Markdown Support:** Renders chatbot responses in Markdown format using `react-markdown`.
 -   **Responsive Design:** Provides a seamless user experience across various devices.
